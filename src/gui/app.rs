@@ -55,9 +55,9 @@ impl EscPosEmulatorApp {
         // Top panel with tabs
         TopBottomPanel::top("tabs").show(ctx, |ui| {
             ui.horizontal(|ui| {
-                ui.selectable_value(&mut self.selected_tab, Tab::Receipt, "🖨️ Receipt");
-                ui.selectable_value(&mut self.selected_tab, Tab::Commands, "📋 Commands");
-                ui.selectable_value(&mut self.selected_tab, Tab::Settings, "⚙️ Settings");
+                ui.selectable_value(&mut self.selected_tab, Tab::Receipt, "Receipt");
+                ui.selectable_value(&mut self.selected_tab, Tab::Commands, "Commands");
+                ui.selectable_value(&mut self.selected_tab, Tab::Settings, "Settings");
             });
         });
 
