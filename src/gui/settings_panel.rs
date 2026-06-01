@@ -23,15 +23,15 @@ impl SettingsPanel {
             ui.label("Installs the emulator as a system printer");
             
             ui.horizontal(|ui| {
-                if ui.button("🖨️ Install Windows Printer").clicked() {
+                if ui.button("Install Windows Printer").clicked() {
                     self.install_windows_printer();
                 }
                 
-                if ui.button("🐧 Install Linux Printer").clicked() {
+                if ui.button("Install Linux Printer").clicked() {
                     self.install_linux_printer();
                 }
                 
-                if ui.button("🗑️ Uninstall Printer").clicked() {
+                if ui.button("Uninstall Printer").clicked() {
                     self.uninstall_printer();
                 }
             });
@@ -39,7 +39,7 @@ impl SettingsPanel {
             ui.label("Note: Requires administrator privileges");
             
             // Check printer status
-            if ui.button("🔍 Check Status").clicked() {
+            if ui.button("Check Status").clicked() {
                 self.check_printer_status();
             }
         });
@@ -61,11 +61,11 @@ impl SettingsPanel {
 
         // Information about operation
         ui.group(|ui| {
-            ui.label("ℹ️  Automatic Operation");
-            ui.label("• The emulator automatically respects ESC/POS standards");
-            ui.label("• Paper width: 50mm, 78mm, 80mm (auto-detection)");
-            ui.label("• Font, justification, emphasis: ESC/POS commands");
-            ui.label("• No manual configuration needed!");
+            ui.label("Automatic Operation");
+            ui.label("The emulator automatically respects ESC/POS standards");
+            ui.label("Paper width: 50mm, 78mm, 80mm (auto-detection)");
+            ui.label("Font, justification, emphasis: ESC/POS commands");
+            ui.label("No manual configuration needed!");
         });
     }
 
@@ -85,14 +85,14 @@ impl SettingsPanel {
             Ok(output) => {
                 if output.status.success() {
                     let stdout = String::from_utf8_lossy(&output.stdout);
-                    println!("✅ {}", stdout);
+                    println!("{}", stdout);
                 } else {
                     let stderr = String::from_utf8_lossy(&output.stderr);
-                    println!("❌ Error: {}", stderr);
+                    println!("Error: {}", stderr);
                 }
             }
             Err(e) => {
-                println!("❌ Cannot execute printer installation: {}", e);
+                println!("Cannot execute printer installation: {}", e);
             }
         }
     }
@@ -117,14 +117,14 @@ impl SettingsPanel {
             Ok(output) => {
                 if output.status.success() {
                     let stdout = String::from_utf8_lossy(&output.stdout);
-                    println!("ℹ️  {}", stdout);
+                    println!("{}", stdout);
                 } else {
                     let stderr = String::from_utf8_lossy(&output.stderr);
-                    println!("ℹ️  {}", stderr);
+                    println!("{}", stderr);
                 }
             }
             Err(e) => {
-                println!("ℹ️  Linux installation attempted: {}", e);
+                println!("Linux installation attempted: {}", e);
             }
         }
     }
@@ -144,14 +144,14 @@ impl SettingsPanel {
             Ok(output) => {
                 if output.status.success() {
                     let stdout = String::from_utf8_lossy(&output.stdout);
-                    println!("✅ {}", stdout);
+                    println!("{}", stdout);
                 } else {
                     let stderr = String::from_utf8_lossy(&output.stderr);
-                    println!("❌ Error: {}", stderr);
+                    println!("Error: {}", stderr);
                 }
             }
             Err(e) => {
-                println!("❌ Cannot execute printer uninstallation: {}", e);
+                println!("Cannot execute printer uninstallation: {}", e);
             }
         }
     }
@@ -170,15 +170,15 @@ impl SettingsPanel {
                 if output.status.success() {
                     let stdout = String::from_utf8_lossy(&output.stdout);
                     if stdout.trim().is_empty() {
-                        println!("ℹ️  Virtual printer not installed");
+                        println!("Virtual printer not installed");
                     } else {
-                        println!("✅ Virtual printer installed:");
+                        println!("Virtual printer installed:");
                         println!("{}", stdout);
                     }
                 }
             }
             Err(e) => {
-                println!("❌ Cannot check status: {}", e);
+                println!("Cannot check status: {}", e);
             }
         }
     }
@@ -197,16 +197,16 @@ impl SettingsPanel {
                 if output.status.success() {
                     let stdout = String::from_utf8_lossy(&output.stdout);
                     if stdout.contains("True") {
-                        println!("✅ Connection to port 9100 successful");
+                        println!("Connection to port 9100 successful");
                     } else {
-                        println!("❌ Connection to port 9100 failed");
+                        println!("Connection to port 9100 failed");
                     }
                 } else {
-                    println!("❌ Cannot test connection");
+                    println!("Cannot test connection");
                 }
             }
             Err(e) => {
-                println!("❌ Cannot test connection: {}", e);
+                println!("Cannot test connection: {}", e);
             }
         }
     }
